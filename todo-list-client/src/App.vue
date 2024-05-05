@@ -25,7 +25,6 @@
             <td>{{ task.deadline }}</td>
             <td><input type="checkbox" class="form-check" @change="moveCompletedTask(index)" :checked="convertStatusToBoolean(task.status)"
                 v-bind:id="task.id">
-              <label for="checkbox">{{ convertStatusToBoolean(task.status) }}</label>
             </td>
             <td>
               <button class="btn btn-primary" @click="removeTask(index)">Remove</button>
@@ -155,8 +154,8 @@ export default {
           if (task.status) {
             this.tasks.splice(index, 1);
             this.tasks.push(task);
-            this.tasks.sort((a, b) => a.status - b.status);
           }
+          this.tasks.sort((a, b) => a.status - b.status);
         })
         .catch(error => {
           console.error('Error updating task status:', error);
